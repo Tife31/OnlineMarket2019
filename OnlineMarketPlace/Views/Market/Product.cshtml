@@ -1,0 +1,28 @@
+﻿@model OnlineMarketPlace.ViewModels.RandomProductViewModel
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*Told to use the viewModel, but it keeps causing a bug. i WOULD HAVE TO TAKE A LOOK At it a little bit closer,*@
+<h2>@Model.Product.Title</h2>
+<p> @Model.Product.Price</p>
+<P>
+    @Html.DisplayFor(modelItem => item.ProductInventory)
+</P>
+<p>To add this to your cart, click here!</p>
+@if (Model.Product.Inventory > 1)
+{
+    <p>@Model.Product.Title is currently unavaible. Will be restocked soon</p>
+}
+else if (Model.Product.Inventory == 1)
+{
+    <p>Hurry! One more left of this Product! waiting right here just for you.</p>
+    <button>Add to cart!</button>
+}
+else
+{
+    <p>To add this to your cart, click here!</p>
+    <button>Add to cart!</button>
+}
+
+

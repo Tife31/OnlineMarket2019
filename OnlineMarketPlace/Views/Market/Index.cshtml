@@ -1,0 +1,43 @@
+﻿@*By: Tife Akinola
+   For: Shopify summer 2019
+    ******Online Market PLace.
+    *@
+@model IEnumerable<OnlineMarketPlace.Models.Product>
+
+<h2>Welcome to the Online Market. Ready to Shop?</h2>
+<table class="table">
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductTitle)
+
+        </td>
+        <td>
+            $@Html.DisplayFor(modelItem => item.ProductPrice) CAD
+        </td>
+
+        @if (item.ProductInventory > 1)
+        {
+            <td>
+                @Html.ActionLink("Add to Cart", "AddToCart", "AddToCart", new { id = item.ProductId}, null) 
+            </td>
+         }
+         else if (item.ProductInventory == 1)
+         {  
+                <td>
+                <p> Hurry! One more left of this product waiting right here just for you.</p>
+                 @Html.ActionLink("Add to Cart", "AddToCart","AddToCart", new { id = item.ProductId }, null)
+                </td>
+         }
+         else
+         {
+
+                <td>
+                <p> @item.ProductTitle is currently unavaible. Will be restocked soon.</p>
+                </td>
+         }
+    </tr>
+    }
+  
+</table>

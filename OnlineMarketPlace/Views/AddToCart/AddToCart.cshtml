@@ -1,0 +1,52 @@
+﻿@model IEnumerable<OnlineMarketPlace.Models.Product>
+    @{
+        ViewBag.Title = "AddToCart";
+    }
+
+<h2>AddToCart</h2>
+
+<table class="table">
+    @foreach (var item in Model)
+    {
+    <tr>
+        @if (item.ProductInventory > 1)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductTitle)
+
+            </td>
+
+            <td>
+                $@Html.DisplayFor(modelItem => item.ProductPrice) CAD
+            </td>
+        }
+        else if (item.ProductInventory == 1)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductTitle)
+
+            </td>
+
+            <td>
+                $@Html.DisplayFor(modelItem => item.ProductPrice) CAD
+            </td>
+            <td>
+                <p> Hurry! One more left of this product waiting right here just for you.</p>
+            </td>
+        }
+        else
+        {
+
+            <td>
+                <p> @item.ProductTitle has become unavaible. Will be restocked soon.</p>
+            </td>
+        }
+    </tr>
+    }
+
+</table>
+
+<button>@Html.ActionLink("Proceed To CheckOut", "Checkout", "Checkout")</button>
+<button>@Html.ActionLink("Keep Shopping", "Index", "Market")</button>
+
+    
